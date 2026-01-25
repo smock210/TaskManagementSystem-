@@ -1,0 +1,13 @@
+package ru.edu.taskmanagemntsystem.model;
+
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+public class Comment {
+    private long id;
+    private String text;
+    private String author;
+    private LocalDateTime date;
+}
