@@ -1,13 +1,11 @@
-package ru.edu.taskmanagemntsystem;
+package ru.edu.assignment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TaskManagemntSystemApplication {
-
+public class AssignmentApplication {
     public static void main(String[] args) {
-        SpringApplication.run(TaskManagemntSystemApplication.class, args);
+        SpringApplication.run(AssignmentApplication.class, args);
     }
-
 }
