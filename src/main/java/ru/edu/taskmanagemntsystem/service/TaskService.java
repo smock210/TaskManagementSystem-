@@ -15,4 +15,6 @@ public interface TaskService {
     Iterable<TaskM> findAll();
 
     boolean existsById(Long id);
+
+    TaskM createTask(TaskM task);
 }

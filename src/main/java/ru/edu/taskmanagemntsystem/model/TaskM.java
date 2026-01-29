@@ -16,6 +16,9 @@ public class TaskM {
     private String title;
     private String textOfTask;
     private Status status;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
     private LocalDateTime dateOfCreate;
     private LocalDateTime dateOfLastChange;
     private LocalDateTime dateOfClose;

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
-public class TaskServiseImpl implements TaskService {
+public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
 
@@ -22,6 +22,11 @@ public class TaskServiseImpl implements TaskService {
         TaskM task = new TaskM();
         task.setTitle(title);
         task.setDateOfCreate(LocalDateTime.parse(date));
+        return taskRepository.save(task);
+    }
+
+    @Override
+    public TaskM createTask(TaskM task) {
         return taskRepository.save(task);
     }
 
@@ -49,6 +54,8 @@ public class TaskServiseImpl implements TaskService {
     public boolean existsById(Long id) {
         return false;
     }
+
+
 
     @PostConstruct
     public void fillDatabase() {
