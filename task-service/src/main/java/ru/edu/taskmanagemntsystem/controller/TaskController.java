@@ -1,21 +1,34 @@
 package ru.edu.taskmanagemntsystem.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.NonNull;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.edu.taskmanagemntsystem.dto.TaskDtoResponce;
+import ru.edu.taskmanagemntsystem.dto.TaskDtoRequest;
+import ru.edu.taskmanagemntsystem.model.TaskM;
 import ru.edu.taskmanagemntsystem.service.TaskService;
 
-import java.time.LocalDateTime;
-import java.util.List;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RestController
 @RequestMapping("/events")
 @AllArgsConstructor
 public class TaskController {
+
     private final TaskService taskService;
+
+    @PostMapping("/createTask")
+    public TaskM assign(@RequestBody TaskDtoRequest taskRequest) {
+        TaskM task = new TaskM();
+
+        task.setDateOfCreate(java.time.LocalDateTime.now());
+        var requestValue = taskRequest.getValue();
+        //var dataFromFront = objectMapper.readValue(requestValue, Dto.class);
+        //task.setAuthor(dataFromFront.Author);
+        task.setId(Long.parseLong(taskRequest.getId()));
+
+        return taskService.createTask(task);
+    }
+
     /*private final TaskMapper taskMapper;
 
     @GetMapping("/getAllEvents")
@@ -38,7 +51,7 @@ public class TaskController {
         taskService.deleteAll();
     }
 
-    @PostMapping("/createEvent")
+    @PostMapping "/createEvent")
     public ResponseEntity<@NonNull TaskDtoResponse> createEvent(@RequestBody TaskDtoRequest request) {
         return ResponseEntity.ok(taskMapper
                 .toDto(taskService.createEvent(request.getTitle(), LocalDateTime.now().toString())));
