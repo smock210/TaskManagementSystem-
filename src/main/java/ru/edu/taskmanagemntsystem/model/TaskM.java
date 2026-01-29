@@ -1,12 +1,17 @@
 package ru.edu.taskmanagemntsystem.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
 @Data
+@Table (name = "tasks_table")
 public class TaskM {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
     private String textOfTask;
