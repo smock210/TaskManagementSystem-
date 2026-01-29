@@ -1,7 +1,18 @@
 package ru.edu.taskmanagemntsystem.service;
 
-import org.springframework.stereotype.Service;
+import ru.edu.taskmanagemntsystem.model.TaskM;
 
-@Service
-public class TaskService {
+
+public interface TaskService {
+    TaskM createTask(String title, String date);
+
+    TaskM findById(Long id);
+
+    void deleteById(Long id);
+
+    void deleteAll();
+
+    Iterable<TaskM> findAll();
+
+    boolean existsById(Long id);
 }
