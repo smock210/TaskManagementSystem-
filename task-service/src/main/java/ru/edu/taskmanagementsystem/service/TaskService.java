@@ -4,7 +4,12 @@ import ru.edu.taskmanagementsystem.model.TaskM;
 
 
 public interface TaskService {
-    TaskM createTask(String title, String date);
+    TaskM createTask(String title, String description, String status);
+
+    default TaskM createTask () {
+        return new TaskM();
+    }
+
 
     TaskM findById(Long id);
 

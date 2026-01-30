@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.edu.taskmanagementsystem.model.Status;
 import ru.edu.taskmanagementsystem.model.TaskM;
 import ru.edu.taskmanagementsystem.repository.TaskRepository;
 import ru.edu.taskmanagementsystem.service.TaskService;
@@ -18,10 +19,12 @@ public class TaskServiceImpl implements TaskService {
 
     //@Audited
     @Transactional
-    public TaskM createTask(String title, String date) {
+    public TaskM createTask(String title, String description, String status) {
         TaskM task = new TaskM();
         task.setTitle(title);
-        task.setDateOfCreate(LocalDateTime.parse(date));
+        task.setStatus(Status.valueOf(status));
+        task.setDescription(description);
+        //task.setDateOfCreate(LocalDateTime.parse(date));
         return taskRepository.save(task);
     }
 
@@ -29,6 +32,8 @@ public class TaskServiceImpl implements TaskService {
     public TaskM createTask(TaskM task) {
         return taskRepository.save(task);
     }
+
+
 
     @Override
     public TaskM findById(Long id) {
@@ -60,8 +65,7 @@ public class TaskServiceImpl implements TaskService {
     @PostConstruct
     public void fillDatabase() {
         TaskM task = new TaskM();
-        task.setTitle("event description 1");
-        task.setDateOfCreate(LocalDateTime.now());
+        task.setTitle("task description 1");
         taskRepository.save(task);
     }
 }
