@@ -20,11 +20,12 @@ public class TaskController {
     public TaskM assign(@RequestBody TaskDtoRequest taskRequest) {
         TaskM task = new TaskM();
 
-        task.setDateOfCreate(java.time.LocalDateTime.now());
         var requestValue = taskRequest.getValue();
-        //var dataFromFront = objectMapper.readValue(requestValue, Dto.class);
-        //task.setAuthor(dataFromFront.Author);
-        task.setId(Long.parseLong(taskRequest.getId()));
+        /*var dataFromFront = objectMapper.readValue(requestValue, TaskDtoRequest.class);
+        task.setId(Long.parseLong(dataFromFront.Id));
+        task.setTitle(dataFromFront.Title);
+        task.setTitle(dataFromFront.Description);
+        task.setTitle(dataFromFront.Status);*/
 
         return taskService.createTask(task);
     }

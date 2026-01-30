@@ -14,13 +14,15 @@ public class TaskM {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
-    private String textOfTask;
+    private String description;
     private Status status;
-    @ManyToOne
-    @JoinColumn(name = "author")
+    /*@ManyToOne
+    @JoinColumn(name = "author_id")
     private User author;
     private LocalDateTime dateOfCreate;
     private LocalDateTime dateOfLastChange;
     private LocalDateTime dateOfClose;
-    private List<Comment> comment;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;*/
 }
+
