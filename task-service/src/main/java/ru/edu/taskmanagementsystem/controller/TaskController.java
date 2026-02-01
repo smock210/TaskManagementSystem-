@@ -1,65 +1,56 @@
 package ru.edu.taskmanagementsystem.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.edu.taskmanagementsystem.dto.TaskDtoRequest;
+import ru.edu.taskmanagementsystem.dto.TaskDtoResponse;
+import ru.edu.taskmanagementsystem.mapper.TaskMapper;
 import ru.edu.taskmanagementsystem.model.TaskM;
 import ru.edu.taskmanagementsystem.service.TaskService;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 //import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RestController
-@RequestMapping("/events")
+@RequestMapping("/tasks")
 @AllArgsConstructor
 public class TaskController {
 
     private final TaskService taskService;
+    private final TaskMapper taskMapper;
 
-    @PostMapping("/createTask")
-    public TaskM assign(@RequestBody TaskDtoRequest taskRequest) {
-        TaskM task = new TaskM();
-
-        var requestValue = taskRequest.getValue();
-        /*var dataFromFront = objectMapper.readValue(requestValue, TaskDtoRequest.class);
-        task.setId(Long.parseLong(dataFromFront.Id));
-        task.setTitle(dataFromFront.Title);
-        task.setTitle(dataFromFront.Description);
-        task.setTitle(dataFromFront.Status);*/
-
-        return taskService.createTask(task);
-    }
-
-    /*private final TaskMapper taskMapper;
-
-    @GetMapping("/getAllEvents")
-    public ResponseEntity<@NonNull List<TaskDtoResponce>> getAllEvents() {
+    @GetMapping("/getAllTasks")
+    public ResponseEntity<@NonNull List<TaskDtoResponse>> getAllEvents() {
         return ResponseEntity.ok(taskMapper.toDto(taskService.findAll()));
     }
 
-    @GetMapping("/getEventById/{id}")
+    @PostMapping("/createTask")
+    public TaskM assign(@RequestBody TaskDtoRequest taskRequest) {
+        return taskService.createTask(taskMapper.toTask(taskRequest));
+    }
+
+    @GetMapping("/getTaskById/{id}")
     public ResponseEntity<@NonNull TaskDtoResponse> getEventById(@PathVariable Long id) {
         return ResponseEntity.ok(taskMapper.toDto(taskService.findById(id)));
     }
 
-    @DeleteMapping("/deleteEventById/{id}")
+    @DeleteMapping("/deleteTaskById/{id}")
     public void deleteEventById(@PathVariable Long id) {
         taskService.deleteById(id);
     }
 
-    @DeleteMapping("/deleteAllEvents")
+    @DeleteMapping("/deleteAllTasks")
     public void deleteAllEvents() {
         taskService.deleteAll();
     }
 
-    @PostMapping "/createEvent")
-    public ResponseEntity<@NonNull TaskDtoResponse> createEvent(@RequestBody TaskDtoRequest request) {
-        return ResponseEntity.ok(taskMapper
-                .toDto(taskService.createEvent(request.getTitle(), LocalDateTime.now().toString())));
-    }
-
-    @GetMapping("/existsById/{id}")
+    @GetMapping("/existsTaskById/{id}")
     public ResponseEntity<@NonNull Boolean> existsById(@PathVariable Long id) {
         return ResponseEntity.ok(taskService.existsById(id));
-    }*/
+    }
 }

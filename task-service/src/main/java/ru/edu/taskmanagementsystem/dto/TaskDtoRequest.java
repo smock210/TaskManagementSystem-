@@ -1,11 +1,19 @@
 package ru.edu.taskmanagementsystem.dto;
 
+import lombok.Data;
 import lombok.NonNull;
 
-//@Data
-public class TaskDtoRequest extends TaskDto {
+@Data
+public class TaskDtoRequest {
 
-    public TaskDtoRequest(@NonNull String id, @NonNull String value, @NonNull String dateTime) {
-        super(id, value, dateTime);
-    }
+    @NonNull
+    private String id;
+    @NonNull
+    private String title;
+    @NonNull
+    private String description;
+    @NonNull
+    private String status;
+    @NonNull
+    private String dateTime;
 }

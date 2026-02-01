@@ -4,11 +4,11 @@ import lombok.Data;
 import lombok.NonNull;
 
 @Data
-public abstract class TaskDto {
-    @NonNull
+public class TaskDtoResponse{
+
     private String id;
-    @NonNull
-    private String value;
-    @NonNull
+    private String title;
+    private String description;
+    private String status;
     private String dateTime;
 }
