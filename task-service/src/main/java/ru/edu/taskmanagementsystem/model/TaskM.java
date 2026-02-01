@@ -13,9 +13,13 @@ public class TaskM {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(unique = true, name = "title_of_task", nullable = false)
     private String title;
+    @Column(name = "description_of_event", nullable = false)
     private String description;
+    @Column(name = "status_of_event", nullable = false)
     private Status status;
+    private LocalDateTime dateOfCreate;
     /*@ManyToOne
     @JoinColumn(name = "author_id")
     private User author;

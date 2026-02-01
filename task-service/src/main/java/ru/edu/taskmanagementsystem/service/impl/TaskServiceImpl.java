@@ -4,12 +4,11 @@ import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.edu.taskmanagementsystem.aop.annotations.Audited;
 import ru.edu.taskmanagementsystem.model.Status;
 import ru.edu.taskmanagementsystem.model.TaskM;
 import ru.edu.taskmanagementsystem.repository.TaskRepository;
 import ru.edu.taskmanagementsystem.service.TaskService;
-
-import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -17,7 +16,7 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
 
-    //@Audited
+    @Audited
     @Transactional
     public TaskM createTask(String title, String description, String status) {
         TaskM task = new TaskM();
